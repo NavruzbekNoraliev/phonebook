@@ -16,7 +16,7 @@ export const AppRoutes: Routes = [
       },
       {
         path: "phonebook",
-        component: PhonebookComponent
+        loadChildren: () => import('./components/phonebook/phonebook.module').then(m => m.PhoneBookModule)
       },
       {
         path: "404",

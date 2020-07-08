@@ -1,3 +1,6 @@
+import { PhoneBookModule } from './components/phonebook/phonebook.module';
+import { SidebarComponent } from './components/layouts/full/sidebar/sidebar.component';
+import { HeaderComponent } from './components/layouts/full/header/header.component';
 import { ErrorComponent } from './components/error/error.component';
 import { BlankComponent } from './components/layouts/blank/blank.component';
 import { NgModule } from '@angular/core';
@@ -7,18 +10,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from './shared/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
-import { PhonebookComponent } from './components/phonebook/phonebook.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PhonebookComponent,
     BlankComponent,
-    ErrorComponent
+    ErrorComponent,
+    HeaderComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
     SharedModule,
+    PhoneBookModule,
     RouterModule.forRoot(AppRoutes),
     BrowserAnimationsModule
   ],
