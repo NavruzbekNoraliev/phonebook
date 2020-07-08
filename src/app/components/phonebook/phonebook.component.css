@@ -1,3 +1,50 @@
 mat-card {
   margin: 15px;
 }
+
+.example-header-image {
+  background-image: url('https://lh3.googleusercontent.com/-_qDsX91ylOc/AAAAAAAAAAI/AAAAAAAAAAA/AMZuucnBLg5EIEvSoBhtFp3z77uX_gtrNw/photo.jpg?sz=46');
+  background-size: cover;
+}
+
+h4 {
+  margin:0 !important;
+}
+.addBtn {
+  float: right !important;
+  justify-content: flex-end;
+}
+.f-right {
+  float: right;
+}
+
+
+.center-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 7rem;
+  height: 7rem;
+}
+.top-image {
+  margin-top: -81px !important;
+}
+.m-t-10 {
+  margin-top: 10px;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.width-15{
+  width: 15rem;
+}
+.color-black {
+  color: black;
+}
+
+.mat-row:hover {
+  background-color: #e0e0e0;
+}

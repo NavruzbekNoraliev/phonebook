@@ -1,6 +1,82 @@
 <mat-card class="mat-elevation-z8">
-  <mat-card-content fxLayout="row" fxLayout.sm="column" fxLayoutAlign="space-between" fxLayoutGap="10px">
-    <app-list-all-contacts fxFlex.sm="100" fxFlex="40"></app-list-all-contacts>
-    <app-contact-details fxFlex.sm="100"fxFlex="60"></app-contact-details>
+  <mat-card-content fxLayout="row" fxLayout.sm="column" fxLayoutAlign="space-between">
+    <!-- List All Contacts -->
+    <div  fxFlex.sm="100" fxFlex.lt-sm="100" fxFlex="40" >
+      <mat-card class="mat-elevation-z4 height-100">
+        <mat-card-content fxLayout="column">
+          <mat-form-field fxFlex="100">
+            <mat-label>Search</mat-label>
+            <input matInput (keyup)="applyFilter($event)" #input>
+          </mat-form-field>
+
+          <table mat-table [dataSource]="dataSource">
+            <ng-container matColumnDef="contact">
+              <td mat-cell *matCellDef="let element" (click)="onSelect(element)">
+                <div fxLayout="row" fxLayoutGap="10px">
+                  <div mat-card-avatar class="example-header-image"></div>
+                  <div fxLayout="column">
+                    <h4> {{element.name}}</h4>
+                    <span>{{element.phone}}</span>
+                  </div>
+                </div>
+              </td>
+            </ng-container>
+
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+            </tr>
+          </table>
+          <div class="addBtn">
+            <button mat-fab color="primary" class="f-right" (click)="onAdd()">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <!-- Contact Details -->
+    <div fxFlex.sm="100"  fxFlex.lt-sm="100" fxFlex="60">
+      <mat-card class="mat-elevation-z4 height-100">
+        <img mat-card-image src="https://t4.ftcdn.net/jpg/02/96/97/31/240_F_296973116_ANKi9dHyYR4wQs3kOgU7JpGtnuviA2SB.jpg" height="160px"  alt="Cover Photo">
+        <div class="top-image">
+          <img mat-card-avatar src="https://lh3.googleusercontent.com/-_qDsX91ylOc/AAAAAAAAAAI/AAAAAAAAAAA/AMZuucnBLg5EIEvSoBhtFp3z77uX_gtrNw/photo.jpg?sz=150" class="center-image" alt="Profile Photo">
+        </div>
+
+        <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" class="m-t-10">
+          <mat-form-field appearance="fill" class="width-15">
+            <mat-label>Name</mat-label>
+            <input matInput [value]="contact ? contact.name : ''" [readonly]="disabled"  #name required>
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="width-15">
+            <mat-label>Phone</mat-label>
+            <input matInput [value]="contact ? contact.phone : ''" [readonly]="disabled" #phone required>
+          </mat-form-field>
+
+          <div fxFlex="100" fxLayoutGap="10px">
+              <button mat-fab color="accent" (click)="onUpdate()" *ngIf='!updating && !newContact'>
+                <mat-icon>create</mat-icon>
+              </button>
+
+              <button mat-fab color="primary" (click)="submitUpdate(name.value, phone.value)" *ngIf='updating && !newContact'>
+                <mat-icon>done</mat-icon>
+              </button>
+
+              <button mat-fab color="primary" (click)="submit(name.value, phone.value)" *ngIf='newContact && !updating' [disabled]="(name.value.length==0&&phone.value.length==0)">
+                <mat-icon>done</mat-icon>
+              </button>
+
+              <button mat-fab color="warn" (click)="onDelete()" *ngIf='!updating && !newContact'>
+                <mat-icon>delete</mat-icon>
+              </button>
+
+              <button mat-fab color="warn" (click)="onCancel()" *ngIf='updating || newContact'>
+                <mat-icon>close</mat-icon>
+              </button>
+          </div>
+
+        </div>
+      </mat-card>
+    </div>
   </mat-card-content>
 </mat-card>

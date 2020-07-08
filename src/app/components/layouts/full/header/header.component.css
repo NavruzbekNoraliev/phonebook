@@ -2,3 +2,13 @@
   background-color: #111418;
   color: whitesmoke;
 }
+
+.right {
+  display: block;
+  float: right;
+  justify-self: right;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
